@@ -8,7 +8,6 @@ The system SHALL maintain a `users` table storing user account information with 
 - `google_id` (text, nullable, unique — for Google OAuth users)
 - `name` (text, nullable)
 - `plan` (text, not null, default 'free', enum: 'free' | 'pro')
-- `newebpay_customer_id` (text, nullable)
 - `subscription_end_date` (timestamptz, nullable — for tracking when Pro expires after cancellation)
 - `created_at` (timestamptz, not null, default now())
 - `updated_at` (timestamptz, not null, default now())

@@ -3,10 +3,19 @@ import { NextRequest } from "next/server";
 
 const mockVerifyCode = vi.hoisted(() => vi.fn());
 const mockStoreVerifiedChatId = vi.hoisted(() => vi.fn());
+const mockChannelFindFirst = vi.hoisted(() => vi.fn());
 
 vi.mock("@/lib/jobs/outputs/telegram-verify", () => ({
   verifyCode: mockVerifyCode,
   storeVerifiedChatId: mockStoreVerifiedChatId,
+}));
+
+vi.mock("@/lib/db/client", () => ({
+  prisma: {
+    channel: {
+      findFirst: mockChannelFindFirst,
+    },
+  },
 }));
 
 // Mock global fetch for Telegram API calls
@@ -31,6 +40,7 @@ function makeUpdate(text: string, chatId = 12345) {
 beforeEach(() => {
   vi.clearAllMocks();
   mockFetch.mockResolvedValue({ ok: true });
+  mockChannelFindFirst.mockResolvedValue(null);
   // Set env for tests
   vi.stubEnv("TELEGRAM_BOT_TOKEN", "test-token");
   vi.stubEnv("TELEGRAM_WEBHOOK_SECRET", "");

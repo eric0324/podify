@@ -35,12 +35,9 @@ export function LandingNav() {
               {currentLocale === "zh-TW" ? tLang("en") : tLang("zhTW")}
             </Button>
             <Link href="/login">
-              <Button variant="ghost" size="sm">
+              <Button size="sm">
                 {t("login")}
               </Button>
-            </Link>
-            <Link href="/register">
-              <Button size="sm">{t("register")}</Button>
             </Link>
           </div>
         </div>

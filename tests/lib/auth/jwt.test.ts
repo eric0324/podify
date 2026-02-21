@@ -5,13 +5,11 @@ vi.stubEnv("JWT_SECRET", "test-secret-key-for-vitest");
 
 let signJWT: typeof import("@/lib/auth/jwt").signJWT;
 let verifyJWT: typeof import("@/lib/auth/jwt").verifyJWT;
-let generateResetToken: typeof import("@/lib/auth/jwt").generateResetToken;
 
 beforeAll(async () => {
   const mod = await import("@/lib/auth/jwt");
   signJWT = mod.signJWT;
   verifyJWT = mod.verifyJWT;
-  generateResetToken = mod.generateResetToken;
 });
 
 describe("signJWT", () => {
@@ -46,20 +44,5 @@ describe("verifyJWT", () => {
     await new Promise((r) => setTimeout(r, 10));
     const result = verifyJWT(token);
     expect(result).toBeNull();
-  });
-});
-
-describe("generateResetToken", () => {
-  it("returns a UUID-format string", () => {
-    const token = generateResetToken();
-    const uuidRegex =
-      /^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-    expect(token).toMatch(uuidRegex);
-  });
-
-  it("returns unique values on each call", () => {
-    const a = generateResetToken();
-    const b = generateResetToken();
-    expect(a).not.toBe(b);
   });
 });

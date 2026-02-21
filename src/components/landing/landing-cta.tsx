@@ -20,7 +20,7 @@ export function LandingCta() {
             <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
               {t("subtitle")}
             </p>
-            <Link href="/register">
+            <Link href="/login">
               <Button size="lg" className="gap-2 text-lg px-8 py-6">
                 {t("button")}
                 <ArrowRight className="h-5 w-5" />

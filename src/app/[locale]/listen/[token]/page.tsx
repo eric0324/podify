@@ -61,7 +61,7 @@ export default async function ListenPage({
         <div className="mx-auto flex max-w-lg items-center justify-between px-4 py-4">
           <span className="text-sm font-medium">{t("ctaSlogan")}</span>
           <Link
-            href="/register"
+            href="/login"
             className="inline-flex items-center gap-1 rounded-lg bg-primary px-4 py-2 text-sm font-medium text-primary-foreground hover:bg-primary/90 transition-colors"
           >
             {t("ctaButton")}

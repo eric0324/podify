@@ -25,9 +25,10 @@ import { concatAudioSegments } from "@/lib/audio/concat";
 
 beforeEach(() => {
   vi.clearAllMocks();
-  // Default: execFile succeeds
+  // Default: execFile succeeds — pass stdout for ffprobe (getDuration)
   mockExecFile.mockImplementation(
-    (_cmd: string, _args: string[], cb: (err: null) => void) => cb(null)
+    (_cmd: string, _args: string[], cb: (err: null, stdout: string) => void) =>
+      cb(null, "10.0")
   );
   mockReadFileSync.mockReturnValue(Buffer.from("output-mp3"));
   mockExistsSync.mockReturnValue(true);
@@ -52,11 +53,11 @@ describe("concatAudioSegments", () => {
     const segments = [Buffer.from("seg1"), Buffer.from("seg2")];
     await concatAudioSegments(segments);
 
-    // First execFile: generate silence
-    expect(mockExecFile).toHaveBeenCalledTimes(2);
+    // execFile calls: generate silence, concat, ffprobe (getDuration), fade
+    expect(mockExecFile).toHaveBeenCalledTimes(4);
     const silenceArgs = mockExecFile.mock.calls[0][1] as string[];
     expect(silenceArgs).toContain("anullsrc=r=44100:cl=stereo");
-    expect(silenceArgs).toContain("0.4");
+    expect(silenceArgs).toContain("0.6");
 
     // Second execFile: concat
     const concatArgs = mockExecFile.mock.calls[1][1] as string[];
@@ -92,9 +93,9 @@ describe("concatAudioSegments", () => {
     const segments = [Buffer.from("seg1"), Buffer.from("seg2")];
     await concatAudioSegments(segments);
 
-    // Should clean up segment files, silence, output, and concat list
+    // Should clean up segment files, silence, raw-output, output, and concat list
     expect(mockUnlinkSync).toHaveBeenCalled();
-    expect(mockUnlinkSync.mock.calls.length).toBeGreaterThanOrEqual(4);
+    expect(mockUnlinkSync.mock.calls.length).toBeGreaterThanOrEqual(5);
   });
 
   it("cleans up temp files after ffmpeg error", async () => {

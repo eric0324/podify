@@ -4,7 +4,7 @@ import createMiddleware from "next-intl/middleware";
 import { routing } from "@/i18n/routing";
 
 const COOKIE_NAME = "purcast_token";
-const AUTH_PAGES = ["/login", "/register", "/forgot-password", "/reset-password"];
+const AUTH_PAGES = ["/login"];
 const PUBLIC_PAGES = ["/listen"];
 
 const intlMiddleware = createMiddleware(routing);

@@ -141,14 +141,3 @@ model Channel {
 
   @@map("channels")
 }
-
-model PasswordResetToken {
-  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
-  userId    String    @map("user_id") @db.Uuid
-  token     String    @unique
-  expiresAt DateTime  @map("expires_at") @db.Timestamptz
-  usedAt    DateTime? @map("used_at") @db.Timestamptz
-  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz
-
-  @@map("password_reset_tokens")
-}

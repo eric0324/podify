@@ -19,7 +19,7 @@ export function LandingHero() {
             {t("subtitle")}
           </p>
           <div className="mt-10 flex justify-center">
-            <Link href="/register">
+            <Link href="/login">
               <Button size="lg" className="gap-2 text-lg px-8 py-6">
                 {t("cta")}
                 <ArrowRight className="h-5 w-5" />

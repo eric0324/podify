@@ -23,7 +23,7 @@ export function LandingPricing() {
         { text: t("free.feature4"), included: false },
       ],
       cta: t("free.cta"),
-      href: "/register",
+      href: "/login",
       highlighted: false,
     },
     {

@@ -23,6 +23,7 @@ vi.mock("@/lib/db/client", () => ({
 }));
 
 import { checkUsageLimit, incrementUsage } from "@/lib/billing/usage";
+import { PLAN_LIMITS } from "@/lib/config/plan";
 
 beforeEach(() => {
   vi.clearAllMocks();
@@ -31,42 +32,42 @@ beforeEach(() => {
 describe("checkUsageLimit", () => {
   it("returns allowed: true for free user under limit", async () => {
     mockUserFindUnique.mockResolvedValue({ plan: "free" });
-    mockUsageFindUnique.mockResolvedValue({ generationCount: 3 });
+    mockUsageFindUnique.mockResolvedValue({ generationCount: 1 });
 
     const result = await checkUsageLimit("user-1");
 
     expect(result).toEqual({
       allowed: true,
-      used: 3,
-      limit: 5,
+      used: 1,
+      limit: PLAN_LIMITS.free,
       plan: "free",
     });
   });
 
   it("returns allowed: false for free user at limit", async () => {
     mockUserFindUnique.mockResolvedValue({ plan: "free" });
-    mockUsageFindUnique.mockResolvedValue({ generationCount: 5 });
+    mockUsageFindUnique.mockResolvedValue({ generationCount: PLAN_LIMITS.free });
 
     const result = await checkUsageLimit("user-1");
 
     expect(result).toEqual({
       allowed: false,
-      used: 5,
-      limit: 5,
+      used: PLAN_LIMITS.free,
+      limit: PLAN_LIMITS.free,
       plan: "free",
     });
   });
 
   it("returns allowed: true for pro user under limit", async () => {
     mockUserFindUnique.mockResolvedValue({ plan: "pro" });
-    mockUsageFindUnique.mockResolvedValue({ generationCount: 50 });
+    mockUsageFindUnique.mockResolvedValue({ generationCount: 5 });
 
     const result = await checkUsageLimit("user-1");
 
     expect(result).toEqual({
       allowed: true,
-      used: 50,
-      limit: 100,
+      used: 5,
+      limit: PLAN_LIMITS.pro,
       plan: "pro",
     });
   });
@@ -80,7 +81,7 @@ describe("checkUsageLimit", () => {
     expect(result).toEqual({
       allowed: true,
       used: 0,
-      limit: 5,
+      limit: PLAN_LIMITS.free,
       plan: "free",
     });
   });

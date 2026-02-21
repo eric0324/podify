@@ -13,54 +13,8 @@
   "Auth": {
     "login": {
       "title": "Sign in to PurCast",
-      "description": "Choose a sign-in method to continue",
-      "googleButton": "Sign in with Google",
-      "googleNotReady": "Google sign-in is not configured yet. Please use Email/Password.",
-      "password": "Password",
-      "forgotPassword": "Forgot password?",
-      "submit": "Sign in",
-      "submitting": "Signing in...",
-      "noAccount": "Don't have an account?",
-      "register": "Sign up",
+      "description": "Sign in with your Google account to continue",
       "fallbackError": "Sign-in failed. Please try again later."
-    },
-    "register": {
-      "title": "Create account",
-      "description": "Start turning text into Podcasts",
-      "nameLabel": "Name (optional)",
-      "namePlaceholder": "Your name",
-      "password": "Password",
-      "passwordPlaceholder": "At least 8 characters",
-      "submit": "Create account",
-      "submitting": "Creating...",
-      "hasAccount": "Already have an account?",
-      "login": "Sign in",
-      "fallbackError": "Registration failed. Please try again later."
-    },
-    "forgotPassword": {
-      "title": "Forgot password",
-      "description": "Enter your email and we'll send you a password reset link",
-      "submit": "Send reset link",
-      "submitting": "Sending...",
-      "backToLogin": "Back to sign in",
-      "sentTitle": "Reset link sent",
-      "sentDescription": "If the email exists, we've sent a password reset link to your inbox. Please check and complete the reset within 1 hour.",
-      "fallbackError": "Failed to send. Please try again later."
-    },
-    "resetPassword": {
-      "title": "Reset password",
-      "description": "Please enter your new password",
-      "newPassword": "New password",
-      "passwordPlaceholder": "At least 8 characters",
-      "confirmPassword": "Confirm new password",
-      "confirmPlaceholder": "Re-enter new password",
-      "submit": "Reset password",
-      "submitting": "Resetting...",
-      "invalidTitle": "Invalid link",
-      "invalidDescription": "The reset link is invalid or expired. Please request a new one.",
-      "reapply": "Request again",
-      "passwordMismatch": "Passwords do not match",
-      "fallbackError": "Reset failed. Please try again later."
     }
   },
   "Layout": {
@@ -414,23 +368,9 @@
   },
   "Errors": {
     "auth": {
-      "emailPasswordRequired": "Email and password are required",
-      "invalidCredentials": "Invalid email or password",
-      "loginFailed": "Sign-in failed. Please try again later.",
       "missingGoogleToken": "Missing Google ID token",
       "googleVerifyFailed": "Google verification failed",
-      "googleLoginFailed": "Google sign-in failed. Please try again later.",
-      "invalidEmail": "Invalid email format",
-      "passwordTooShort": "Password must be at least 8 characters",
-      "emailTaken": "This email is already registered",
-      "registerFailed": "Registration failed. Please try again later.",
-      "emailRequired": "Email is required",
-      "resetLinkSent": "If the email exists, we've sent a reset link",
-      "sendResetFailed": "Failed to send reset link. Please try again later.",
-      "tokenPasswordRequired": "Token and new password are required",
-      "resetLinkInvalid": "Reset link is invalid or expired. Please request a new one.",
-      "resetFailed": "Password reset failed. Please try again later.",
-      "resetSuccess": "Password reset successful. Please sign in again."
+      "googleLoginFailed": "Google sign-in failed. Please try again later."
     },
     "unauthorized": "Unauthorized",
     "extract": {
@@ -507,20 +447,9 @@
       "proOnly": "This feature is available on the Pro plan only"
     }
   },
-  "Email": {
-    "resetPassword": {
-      "subject": "Reset your PurCast password",
-      "heading": "Reset password",
-      "body": "You received this email because someone requested a password reset for your PurCast account.",
-      "instruction": "Click the link below to set a new password (expires in 1 hour):",
-      "buttonText": "Reset password",
-      "ignore": "If you did not request a password reset, please ignore this email."
-    }
-  },
   "Landing": {
     "nav": {
-      "login": "Sign in",
-      "register": "Sign up"
+      "login": "Sign in"
     },
     "hero": {
       "tagline": "Turn any text into a Podcast",

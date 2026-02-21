@@ -1,5 +1,4 @@
 import jwt from "jsonwebtoken";
-import { randomUUID } from "crypto";
 
 const JWT_SECRET = process.env.JWT_SECRET!;
 const JWT_EXPIRY = "7d";
@@ -19,8 +18,4 @@ export function verifyJWT(token: string): JWTPayload | null {
   } catch {
     return null;
   }
-}
-
-export function generateResetToken(): string {
-  return randomUUID();
 }

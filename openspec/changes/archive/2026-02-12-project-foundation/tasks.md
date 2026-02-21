@@ -3,12 +3,12 @@
 - [x] 1.1 使用 `create-next-app` 初始化 Next.js 14 App Router 專案（TypeScript、Tailwind CSS、ESLint、src/ 目錄）。驗收：`bun run build` 可正常建置。
 - [x] 1.2 安裝 shadcn/ui 並初始化設定，安裝基礎元件（Button、Input、Card、Dialog、DropdownMenu）。驗收：可在頁面中引用 shadcn 元件並正常渲染。
 - [x] 1.3 建立專案目錄結構：`src/components/ui/`、`src/components/layout/`、`src/lib/db/`、`src/lib/auth/`、`src/lib/r2/`、`src/lib/utils/`、`src/types/`。驗收：目錄結構存在且符合 design.md 規格。
-- [x] 1.4 建立 `.env.local.example` 範本檔案，列出所有必要環境變數（DATABASE_URL、JWT_SECRET、GOOGLE_CLIENT_ID、GOOGLE_CLIENT_SECRET、R2_ACCOUNT_ID、R2_ACCESS_KEY_ID、R2_SECRET_ACCESS_KEY、R2_BUCKET_NAME、ELEVENLABS_API_KEY、ANTHROPIC_API_KEY、NEWEBPAY_MERCHANT_ID、NEWEBPAY_HASH_KEY、NEWEBPAY_HASH_IV）。驗收：檔案存在，包含所有變數的佔位符。
+- [x] 1.4 建立 `.env.local.example` 範本檔案，列出所有必要環境變數（DATABASE_URL、JWT_SECRET、GOOGLE_CLIENT_ID、GOOGLE_CLIENT_SECRET、R2_ACCOUNT_ID、R2_ACCESS_KEY_ID、R2_SECRET_ACCESS_KEY、R2_BUCKET_NAME、ELEVENLABS_API_KEY、ANTHROPIC_API_KEY）。驗收：檔案存在，包含所有變數的佔位符。
 
 ## 2. PostgreSQL 資料庫 Schema [PRD §6.3]
 
 - [x] 2.1 安裝 Prisma（`prisma` + `@prisma/client`），初始化 `prisma/schema.prisma`。驗收：`bunx prisma init` 成功。
-- [x] 2.2 定義 `users` 表 schema（id, email, password_hash, google_id, name, plan, newebpay_customer_id, subscription_end_date, created_at, updated_at）。驗收：`bunx prisma validate` 成功。
+- [x] 2.2 定義 `users` 表 schema（id, email, password_hash, google_id, name, plan, subscription_end_date, created_at, updated_at）。驗收：`bunx prisma validate` 成功。
 - [x] 2.3 定義 `voices` 表（id, user_id, elevenlabs_voice_id, name, sample_url, created_at），設定 user_id 關聯與 cascade delete。驗收：關聯正確。
 - [x] 2.4 定義 `podcasts` 表（id, user_id, title, source_type, source_content, source_url, script, audio_url, duration, status, error_message, created_at, updated_at），status 預設 'pending'，新增 'script_ready' 狀態。驗收：可插入記錄並正確設定預設值。
 - [x] 2.5 定義 `usage` 表（id, user_id, month, generation_count），設定 (user_id, month) unique constraint。驗收：同一用戶同月份不可重複插入。

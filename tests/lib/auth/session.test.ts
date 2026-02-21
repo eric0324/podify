@@ -71,7 +71,6 @@ describe("getCurrentUser", () => {
       passwordHash: "hashed",
       googleId: null,
       plan: "free",
-      newebpayCustomerId: null,
       subscriptionEndDate: null,
       createdAt: new Date(),
       updatedAt: new Date(),
